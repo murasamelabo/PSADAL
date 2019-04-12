@@ -4,9 +4,17 @@ PowerShell 用 ADAL
 
 ## 導入方法
 
+モジュールを保存し、Import-Module を実行する
+
 ```Powershell
 Import-Module <モジュールを保存したパス>\PSADAL
 ```
+**or**
+
+以下のフォルダに配置
+
+*%programfiles%\WindowsPowerShell\Modules*
+
 
 ## 使用方法
 
@@ -22,6 +30,7 @@ Get-AuthorizationHeader
 ### 1. ユーザーとしてトークンを取得する(Get-AccessTokenAsUser)
 Native アプリケーションにおいて、Client Secret を用いず、ユーザー認証によってトークンを取得します。
 
+* 引数
 ```Powershell
 Get-AccessTokenAsUser `
 -ClientID <アプリケーション ID> `
@@ -30,7 +39,7 @@ Get-AccessTokenAsUser `
 -TenantID <テナント名> `
 ```
 
-実行例
+* 実行例
 ```PowerShell
 Get-AccessTokenAsUser `
 -ClientID "21ede95b-5994-2137-b191-cad5daea005d" `
@@ -57,6 +66,7 @@ Authority             : https://login.windows.net/contoso.onmicrosoft.com/oauth2
 ### 2. アプリケーションとしてトークンを取得する(Get-AccessTokenAsClient)
 Web アプリケーションにおいて、Client Secret を用いて、トークンを取得します。
 
+*  引数
 ```Powershell
 Get-AccessTokenAsUser `
 -ClientID <アプリケーション ID> `
@@ -65,7 +75,11 @@ Get-AccessTokenAsUser `
 -TenantID <テナント名> `
 ```
 
-実行例
+コマンド実行後以下のような認証ダイアログが表示されます。
+
+![ADAL](https://user-images.githubusercontent.com/35388078/56032264-aea60100-5d5c-11e9-8c72-dc4985abce46.jpg)
+
+* 実行例
 ```PowerShell
 get-AccessTokenAsClient  `
 -ClientID "52828bf0-353e-4357-aed4-b0c277d72254" `
@@ -74,7 +88,7 @@ get-AccessTokenAsClient  `
 -ClientSecret "CvI4y+XAJMgUpomHYUBBSIJNEwo+BSLVhU6uSpRtPCI="
 ```
 
-実行結果
+* 実行結果
 ```
 AccessTokenType       : Bearer
 AccessToken           : eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFEQ29 <smip>
@@ -90,6 +104,7 @@ Authority             : https://login.windows.net/contoso.onmicrosoft.com/oauth2
 ### 3. アプリケーションとして証明書を用いてトークンを取得する(Get-AccessTokenAsClientwithCert)
 Web アプリケーションにおいて、証明書を用いてトークンを取得します。
 
+* 引数
 ```Powershell
 Get-AccessTokenAsUser `
 -ClientID <アプリケーション ID> `
@@ -98,7 +113,7 @@ Get-AccessTokenAsUser `
 -TenantID <テナント名> `
 ```
 
-実行例
+* 実行例
 ```PowerShell
 
 $Cert=Get-ChildItem "cert:\CurrentUser\My"|where {$_.Thumbprint -eq '<Thumbprint>'}
@@ -120,7 +135,7 @@ get-AccessTokenAsClientwithCert  `
 -certificate $Cert
 ```
 
-実行結果
+* 実行結果
 ```
 AccessTokenType       : Bearer
 AccessToken           : eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFEQ29 <smip>
@@ -135,13 +150,17 @@ Authority             : https://login.windows.net/contoso.onmicrosoft.com/oauth2
 
 ### 4. 取得したトークンを AuthHeader 用のハッシュテーブルに成形する(Get-AuthorizationHeader)
 
+* 引数
 ```PowerShell
 $token=get-AccessTokenAsClientwithCert  `
 -ClientID "52828bf0-353e-4357-aed4-b0c277d72254" `
 -ResourceURI  "https://graph.microsoft.com" `
 -TenantID "contoso.onmicrosoft.com" `
 -certificate $Cert
+```
 
+* 実行結果
+```PowerShell
 $header = Get-AuthorizationHeader -AccessToken $token
 
 > $header

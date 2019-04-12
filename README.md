@@ -1,4 +1,6 @@
 # PSADAL
+PowerShell 用 ADAL
+
 
 ## 導入方法
 

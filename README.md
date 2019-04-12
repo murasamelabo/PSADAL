@@ -48,8 +48,12 @@ Get-AccessTokenAsUser `
 -TenantID "contoso.onmicrosoft.com" `
 ```
 
+コマンド実行後以下のような認証ダイアログが表示されます。
 
-実行結果
+![ADAL](https://user-images.githubusercontent.com/35388078/56032264-aea60100-5d5c-11e9-8c72-dc4985abce46.jpg)
+
+
+* 実行結果
 ```
 AccessTokenType       : Bearer
 AccessToken           : eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFEQ29N <snip>
@@ -74,10 +78,6 @@ Get-AccessTokenAsUser `
 -RedirectURI <Redirect URI> `
 -TenantID <テナント名> `
 ```
-
-コマンド実行後以下のような認証ダイアログが表示されます。
-
-![ADAL](https://user-images.githubusercontent.com/35388078/56032264-aea60100-5d5c-11e9-8c72-dc4985abce46.jpg)
 
 * 実行例
 ```PowerShell

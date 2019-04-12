@@ -48,7 +48,7 @@ TenantId              : 1e21412a-fd5e-42e3-b5da-53dc51163e42
 UserInfo              : Microsoft.IdentityModel.Clients.ActiveDirectory.UserInfo
 IdToken               : eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiJl <snip>
 
-Authority             : https://login.windows.net/test.onmicrosoft.com/oauth2/authorize/
+Authority             : https://login.windows.net/contoso.onmicrosoft.com/oauth2/authorize/
 ```
 
 
@@ -127,7 +127,7 @@ ExtendedLifeTimeToken : False
 TenantId              :
 UserInfo              :
 IdToken               :
-Authority             : https://login.windows.net/myrasame.onmicrosoft.com/oauth2/authorize/
+Authority             : https://login.windows.net/contoso.onmicrosoft.com/oauth2/authorize/
 ```
 
 
